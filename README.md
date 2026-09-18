@@ -237,7 +237,8 @@ app and its story files.
 
 MIT — see `LICENSE.txt`.
 
-This project spent its first few commits inside a fork of
+MIT, inherited from the template this repo briefly lived inside:
+this project spent its first few commits inside a fork of
 [Best-README-Template](https://github.com/othneildrew/Best-README-Template), because
 that is where a phone-started session happened to open — not because it had anything
 to do with it. It has its own repo now.
