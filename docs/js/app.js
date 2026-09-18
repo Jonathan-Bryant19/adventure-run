@@ -82,7 +82,28 @@ function renderHome() {
   $('chapter-length').textContent = `${chapter.minutes ?? '?'} min`;
   $('progress-summary').textContent = `${done.length}/${app.pack.chapters.length} chapters`;
 
-  $('btn-dev').textContent = state.settings.dev ? 'dev tools: on' : 'dev tools';
+  renderDevTools();
+}
+
+/**
+ * The dev panel and the test badge read app-level prefs, not the save — the
+ * profile switch has to survive a reset and has to stay reachable no matter
+ * which profile you're in.
+ */
+function renderDevTools() {
+  const { dev } = store.appPrefs();
+  const testing = store.isTestProfile();
+
+  $('btn-dev').textContent = dev ? 'dev tools: on' : 'dev tools';
+  $('home-dev').hidden = !dev;
+  $('test-badge').hidden = !testing;
+  $('run-test-badge').hidden = !testing;
+
+  $('btn-profile').textContent = `Test profile: ${testing ? 'on' : 'off'}`;
+  $('btn-reset').textContent = testing ? 'Reset test profile' : 'Reset Logan\u2019s progress…';
+  $('dev-note').textContent = testing
+    ? 'Runs are saving to a throwaway profile. Logan\u2019s progress is untouched — switch back off before he runs.'
+    : 'Turn the test profile on to try runs without touching his sun, kit or chapters.';
 }
 
 // ───────────────────────── run ─────────────────────────
@@ -108,7 +129,7 @@ async function startRun() {
   $('interval-countdown').textContent = '--';
   $('screen-run').dataset.interval = 'warmup';
   $('btn-pause').textContent = 'Pause';
-  $('dev-panel').hidden = !state.settings.dev;
+  $('dev-panel').hidden = !store.appPrefs().dev;
   setSpeed(1);
 
   showScreen('run');
@@ -348,9 +369,26 @@ function wireEvents() {
   });
 
   $('btn-dev').addEventListener('click', () => {
-    const state = store.update((s) => { s.settings.dev = !s.settings.dev; });
-    $('btn-dev').textContent = state.settings.dev ? 'dev tools: on' : 'dev tools';
-    $('dev-panel').hidden = !state.settings.dev;
+    const { dev } = store.setAppPrefs({ dev: !store.appPrefs().dev });
+    $('dev-panel').hidden = !dev;
+    renderDevTools();
+  });
+
+  $('btn-profile').addEventListener('click', () => {
+    store.setAppPrefs({ profile: store.isTestProfile() ? 'main' : 'test' });
+    renderHome();   // a different profile means different sun, kit and chapter
+  });
+
+  $('btn-reset').addEventListener('click', () => {
+    const testing = store.isTestProfile();
+    const warning = testing
+      ? 'Clear the test profile? Logan\u2019s own progress is not affected.'
+      : 'This wipes Logan\u2019s real progress — his sun, his kit and his finished '
+        + 'chapters. There is no undo.\n\nIf you only want to try a run, cancel and '
+        + 'turn on the test profile instead.';
+    if (!confirm(warning)) return;
+    store.reset();
+    renderHome();
   });
 
   $('dev-panel').addEventListener('click', (event) => {

@@ -135,6 +135,15 @@ judgement about it so far was made on a desktop monitor indoors.
   at arm's length while moving — so if anything is hard to read it'll be the home
   and lawn screens, not the run.
 
+### 9. The test profile, on the phone *(added 2026-09-18)*
+Verified in a headless browser: a full run in the test profile leaves his save byte-for-
+byte identical, and reset only clears the active profile.
+
+- **Check:** switch it on, do a run, switch back — is his sun still 7 and his watering
+  can still there?
+- **The failure mode to watch for** is handing him the phone while TEST is still on. The
+  badge is deliberately loud, but you're the one who has to notice it.
+
 ### 8. Does Logan like the plants? *(added 2026-09-11)*
 Six original plants — Sunbud, Pod Popper, Old Acorn, Frostberry, Thumper, Big Rosie —
 drawn as flat SVG. They are deliberately **not** the plants from the game he knows,

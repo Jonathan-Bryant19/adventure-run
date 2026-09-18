@@ -174,6 +174,18 @@ kitchen table, which you'll want long before you want to test it outdoors.
 `window.runnerTwo` in the console exposes the live session
 (`runnerTwo.session.skip(60)`).
 
+### Testing without disturbing his progress
+
+The dev panel has a **test profile** — a second save slot. Switch it on and runs save
+there instead; his sun, kit and finished chapters are untouched, and switching back
+returns everything exactly as he left it. A loud **TEST** badge sits on the home and run
+screens while it's on, because running in a throwaway profile without realising is the
+one way this can cost him anything.
+
+**Reset** wipes only whichever profile is active, and says which one it's about to clear
+before it does. The profile switch itself lives outside both saves, so a reset can never
+take away the means to undo it.
+
 ## Deploying
 
 The app is static and lives in `docs/`, so GitHub Pages needs one setting:

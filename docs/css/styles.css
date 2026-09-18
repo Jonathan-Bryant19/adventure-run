@@ -370,3 +370,34 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .build-btn:disabled { background: var(--surface-2); color: var(--muted); }
 .build-row.is-done { opacity: 0.65; }
 .build-row.is-done .build-name::after { content: " ✓"; color: var(--jog); }
+
+/* ───────────────────────── Dev: profiles and reset ───────────────────────── */
+
+.home-dev {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.home-dev .dev-label { margin: 0; color: var(--muted); }
+.home-dev-row { display: flex; gap: 8px; }
+.home-dev-row .dev-btn { flex: 1; background: var(--surface-2); padding: 12px; }
+.dev-btn-danger { color: #fca5a5; }
+
+.dev-note { margin: 0; font-size: 0.78rem; line-height: 1.35; color: var(--muted); }
+
+/* Loud on purpose. Running in a throwaway profile and not realising is the one
+   way this feature can cost someone their real progress. */
+.test-badge {
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #b45309;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}

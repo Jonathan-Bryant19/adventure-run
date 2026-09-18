@@ -21,6 +21,7 @@
 <section id="screen-home" class="screen is-active">
   <header class="home-header">
     <h1 class="wordmark">Runner<span>Two</span></h1>
+    <p id="test-badge" class="test-badge" hidden>TEST</p>
     <button id="btn-base" class="chip" type="button">
       <span class="chip-icon" id="supply-icon">☀️</span><span id="supply-count">0</span>
       <span id="supply-label">sun</span>
@@ -42,6 +43,15 @@
 
   <button id="btn-start" class="btn-huge" type="button" disabled>START RUN</button>
 
+  <div id="home-dev" class="home-dev" hidden>
+    <p class="dev-label">dev tools</p>
+    <div class="home-dev-row">
+      <button id="btn-profile" class="dev-btn" type="button">Test profile: off</button>
+      <button id="btn-reset" class="dev-btn dev-btn-danger" type="button">Reset…</button>
+    </div>
+    <p id="dev-note" class="dev-note"></p>
+  </div>
+
   <footer class="home-footer">
     <button id="btn-dev" class="link-btn" type="button">dev tools</button>
     <span id="progress-summary" class="muted"></span>
@@ -52,7 +62,10 @@
 <section id="screen-run" class="screen" data-interval="warmup">
   <div class="run-top">
     <div class="run-progress"><div id="run-progress-fill"></div></div>
-    <p class="run-clock"><span id="run-elapsed">0:00</span> / <span id="run-total">0:00</span></p>
+    <p class="run-clock">
+      <span id="run-elapsed">0:00</span> / <span id="run-total">0:00</span>
+      <span id="run-test-badge" class="test-badge" hidden>TEST</span>
+    </p>
   </div>
 
   <div class="run-main">

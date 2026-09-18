@@ -5,7 +5,48 @@
 // that progress. The field names below are the same deal: they're deliberately
 // theme-neutral internals, and what a pack *calls* them comes from its
 // `vocabulary` block instead.
-const KEY = 'riverbend.save.v1';
+const MAIN_KEY = 'riverbend.save.v1';
+
+// Which profile is active, and the dev flag, live outside the save — so
+// switching profiles can't strand you in one with dev switched off, and so a
+// reset can't take the switch away with it.
+const APP_KEY = 'riverbend.app.v1';
+
+/** The real player's profile keeps the original key, untouched. */
+const keyFor = (profile) => (profile === 'main' ? MAIN_KEY : `riverbend.save.${profile}.v1`);
+
+function appDefaults() {
+  return { profile: 'main', dev: false };
+}
+
+export function appPrefs() {
+  try {
+    const raw = localStorage.getItem(APP_KEY);
+    if (raw) return { ...appDefaults(), ...JSON.parse(raw) };
+    // First load on a build that has profiles: inherit the dev flag from the
+    // existing save, so it doesn't have to be switched on a second time.
+    const legacy = JSON.parse(localStorage.getItem(MAIN_KEY) || '{}');
+    return { ...appDefaults(), dev: Boolean(legacy?.settings?.dev) };
+  } catch (err) {
+    console.warn('App prefs unreadable, using defaults.', err);
+    return appDefaults();
+  }
+}
+
+export function setAppPrefs(patch) {
+  const next = { ...appPrefs(), ...patch };
+  try {
+    localStorage.setItem(APP_KEY, JSON.stringify(next));
+  } catch (err) {
+    console.warn('Could not write app prefs.', err);
+  }
+  return next;
+}
+
+export const activeProfile = () => appPrefs().profile;
+
+/** True when running in a throwaway profile rather than the real player's. */
+export const isTestProfile = () => activeProfile() !== 'main';
 
 function defaults() {
   return {
@@ -26,7 +67,7 @@ function defaults() {
 
 export function load() {
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = localStorage.getItem(keyFor(activeProfile()));
     if (!raw) return defaults();
     const parsed = JSON.parse(raw);
     // Shallow-merge onto defaults so a save written by an older build still boots.
@@ -39,7 +80,7 @@ export function load() {
 
 export function save(state) {
   try {
-    localStorage.setItem(KEY, JSON.stringify(state));
+    localStorage.setItem(keyFor(activeProfile()), JSON.stringify(state));
   } catch (err) {
     // Private browsing, full storage, etc. The run itself still works.
     console.warn('Could not write save file.', err);
@@ -53,9 +94,10 @@ export function update(fn) {
   return save(state);
 }
 
+/** Wipes the ACTIVE profile only — never the one you aren't looking at. */
 export function reset() {
   try {
-    localStorage.removeItem(KEY);
+    localStorage.removeItem(keyFor(activeProfile()));
   } catch (err) {
     console.warn('Could not clear save file.', err);
   }
