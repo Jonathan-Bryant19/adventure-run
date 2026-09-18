@@ -1,0 +1,95 @@
+{
+  "chapterId": "ch01",
+  "duration": 960,
+  "trackDuration": 960,
+  "generatedAt": "2026-09-18T20:05:44.417Z",
+  "beats": {
+    "b01": 4.3,
+    "b02": 40,
+    "b03": 78,
+    "b04": 108,
+    "b05": 172,
+    "b06": 205,
+    "b07": 252,
+    "b08": 296,
+    "b09": 328,
+    "b10": 336,
+    "b11": 372,
+    "b12": 416,
+    "b13": 448,
+    "b14": 468,
+    "b15": 484,
+    "b16": 501,
+    "b17": 514,
+    "b18": 546,
+    "b19": 576,
+    "b20": 608,
+    "b21": 656,
+    "b22": 690,
+    "b23": 730,
+    "b24": 772,
+    "b25": 812,
+    "b26": 846,
+    "b27": 884,
+    "b28": 920
+  },
+  "cues": [
+    {
+      "at": 0,
+      "text": "Let's warm up. Nice and easy."
+    },
+    {
+      "at": 120,
+      "text": "Start jogging!"
+    },
+    {
+      "at": 165,
+      "text": "Walk now. Catch your breath."
+    },
+    {
+      "at": 240,
+      "text": "Start jogging!"
+    },
+    {
+      "at": 285,
+      "text": "Walk now. Catch your breath."
+    },
+    {
+      "at": 360,
+      "text": "Start jogging!"
+    },
+    {
+      "at": 405,
+      "text": "Walk now. Catch your breath."
+    },
+    {
+      "at": 480,
+      "text": "Zombies! Sprint! Go, go, go!"
+    },
+    {
+      "at": 510,
+      "text": "Walk now. Catch your breath."
+    },
+    {
+      "at": 600,
+      "text": "Start jogging!"
+    },
+    {
+      "at": 645,
+      "text": "Walk now. Catch your breath."
+    },
+    {
+      "at": 720,
+      "text": "Start jogging!"
+    },
+    {
+      "at": 765,
+      "text": "Walk now. Catch your breath."
+    },
+    {
+      "at": 840,
+      "text": "Great running. Slow it down."
+    }
+  ],
+  "warnings": []
+}
