@@ -59,10 +59,10 @@ screen locks** — so the phone has to stay awake and out of your pocket.
   never be.
 
 ### 2. Finish the move to `adventure-run`
-The repo exists but the last steps need you — see *Done* for what changed and why.
+Pages is on and the site is live at
+**https://jonathan-bryant19.github.io/adventure-run/** — built from `main`, and the
+build includes the test profile. Two steps left, both on a phone.
 
-- **Enable Pages:** Settings → Pages → Deploy from a branch → `main`, folder `/docs`.
-  New URL: `https://jonathan-bryant19.github.io/adventure-run/`
 - **Repoint Logan's phone.** His home-screen tile points at the old URL and will not
   follow. Delete the old tile, open the new URL, Add to Home Screen again. Do this
   *before* turning the old site off, so there's never a moment with neither working.
@@ -73,7 +73,11 @@ The repo exists but the last steps need you — see *Done* for what changed and 
     cached copy offline forever — a stale app is more confusing than a dead link.
 - **Then retire the old one:** delete the `claude/story-running-app-kids-hr4wgs` branch
   in `Best-README-Template` and turn its Pages off. `master` there is untouched, so
-  that restores it to being exactly a README template.
+  that restores it to being exactly a README template. Last, so there is never a moment
+  with neither URL working.
+
+> Both sites are serving the app right now. That overlap is deliberate and costs
+> nothing — take as long as you like over the tile.
 
 ---
 
@@ -177,6 +181,10 @@ quietly skipped:
 
 ## Done
 
+- **2026-09-18** — Pages enabled on `adventure-run`; the site is live and building from
+  `main`. The old URL is still up too, on purpose, until the tile is moved.
+- **2026-09-18** — Added a test profile and a scoped reset, so runs can be tried
+  solo without costing Logan his progress.
 - **2026-09-18** — Moved the app out of the `Best-README-Template` fork into its own
   repo, `adventure-run`, carrying the four app commits and dropping the template's
   history. It had been living in that fork for no reason other than that a
